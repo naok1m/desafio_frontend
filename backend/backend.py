@@ -1,6 +1,6 @@
-from fastapi import FastAPI, UploadFile, File, HTTPException
-from fastapi.middleware.cors import CORSMiddleware
-import easyocr
+from fastapi import FastAPI, UploadFile, File, HTTPException # type: ignore
+from fastapi.middleware.cors import CORSMiddleware # type: ignore
+import easyocr # type: ignore
 import cv2
 import numpy as np
 import uvicorn

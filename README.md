@@ -61,5 +61,6 @@ Estes itens não são obrigatórios, mas farão seu teste se destacar:
 1. Desenvolva sua solução em um repositório seu (pode ser um fork deste ou um novo projeto).
 2. Escreva um `README.md` **no seu projeto frontend** explicando o passo a passo de como instalar as dependências e rodá-lo (ex: `npm install`, `npm run dev`).
 3. Envie o link do repositório público para o e-mail: juliocartier@gmail.com (Use o assunto: Desafio Front-end - [Seu Nome])
+4. Data de entrega Limite **14 de Março de 2026**
 
 Boa sorte e divirta-se codando!

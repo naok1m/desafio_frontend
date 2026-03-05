@@ -1,18 +1,12 @@
+import axios from 'axios';
+
+const API_URL = 'http://localhost:8000/api/recognize-plate';
+
 export async function recognizePlate(file) {
   const formData = new FormData();
-  formData.append("file", file);
+  formData.append('file', file);
 
-  const response = await fetch(
-    "http://localhost:8000/api/recognize-plate",
-    {
-      method: "POST",
-      body: formData,
-    }
-  );
-
-  if (!response.ok) {
-    throw new Error("Erro na requisição");
-  }
-
-  return response.json();
+  const response = await axios.post(API_URL, formData);
+  
+  return response.data;
 }

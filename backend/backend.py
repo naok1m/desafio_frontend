@@ -27,7 +27,7 @@ reader = easyocr.Reader(['pt', 'en'], gpu=False, verbose=False)
 
 @app.post("/api/recognize-plate")
 async def recognize_plate(file: UploadFile = File(...)):
-    if not file.content_type.startswith('image/'):
+    if not file.content_type.startswith('image/'): # type: ignore
         raise HTTPException(status_code=400, detail="O arquivo enviado nao e uma imagem valida. Envie JPG ou PNG.")
 
     try:

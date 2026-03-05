@@ -1,33 +1,67 @@
-import { useState } from "react";
+import { useState } from "react"
+import { recognizePlate } from "../services/api"
 
-function UploadForm() {
-    const [, setFile] = useState();
-    const [preview, setPreview] = useState();
-    
-    function handleChange(e){
-        const selectedFile = e.target.files[0];    
-        if (!selectedFile) return;
+function UploadForm({ setResultado }) {
 
-        setFile(selectedFile);
+  const [file, setFile] = useState(null)
+  const [preview, setPreview] = useState(null)
+  const [loading, setLoading] = useState(false)
 
-        const imgURL = URL.createObjectURL(selectedFile);
-        setPreview(imgURL)
+  function handleChange(e) {
+
+    const selected = e.target.files[0]
+
+    if (selected) {
+      setFile(selected)
+      setPreview(URL.createObjectURL(selected))
     }
-    return(
+  }
+
+  async function handleSubmit() {
+
+    if (!file) {
+      alert("Selecione uma imagem")
+      return
+    }
+
+    try {
+
+      setLoading(true)
+
+      const data = await recognizePlate(file)
+
+      setResultado(data)
+
+    } catch (error) {
+
+      console.log(error)
+      alert("Erro ao enviar imagem")
+
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  return (
+    <div>
+
+      <input type="file" onChange={handleChange} />
+
+      {preview && (
         <div>
-            <input type="file" accept="image/*" onChange={handleChange}/>
-            {preview && (
-            <img src={preview} 
-            alt="preview"
-            style={{ width: "400px" }}/>
-            )}
+          <h3>Preview</h3>
+          <img src={preview} width="300" />
         </div>
+      )}
 
-    )
+      <button onClick={handleSubmit} disabled={loading}>
+        Enviar imagem
+      </button>
 
+      {loading && <p>Loading...</p>}
 
-    
+    </div>
+  )
 }
 
-
-export default UploadForm;
+export default UploadForm

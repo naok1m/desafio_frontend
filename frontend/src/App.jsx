@@ -1,14 +1,22 @@
-import { useState } from "react";
-import UploadForm from "./components/UploadForm";
-
+import { useState } from "react"
+import UploadForm from "./components/UploadForm"
+import ResultPanel from "./components/ResultPanel"
 
 function App() {
-    return (
-        <div style={{ maxWidth: "600px", margin: "0 auto", padding: "20px" }}>
-            <h1 style={{ textAlign: "center" }}>Leitor de Placas</h1>
-            <UploadForm />
-            
-        </div>
-    );
+
+  const [resultado, setResultado] = useState(null)
+
+  return (
+    <div>
+
+      <h1>Dashboard de Reconhecimento de Placas</h1>
+
+      <UploadForm setResultado={setResultado} />
+
+      <ResultPanel resultado={resultado} />
+
+    </div>
+  )
 }
-export default App;
+
+export default App

@@ -29,6 +29,7 @@ function UploadForm({ setResultado }) {
       setLoading(true)
 
       const data = await recognizePlate(file)
+      console.log(data)
 
       setResultado(data)
 
@@ -55,7 +56,8 @@ function UploadForm({ setResultado }) {
       )}
 
       <button onClick={handleSubmit} disabled={loading}>
-        Enviar imagem
+        {loading}
+        Analisar
       </button>
 
       {loading && <p>Loading...</p>}
